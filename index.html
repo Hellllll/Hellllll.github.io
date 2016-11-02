@@ -81,6 +81,118 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/11/02/title- javascript语言精粹/" title="javascript语言精粹" itemprop="url">javascript语言精粹</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Lili" target="_blank" itemprop="author">Lili</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-02T07:05:30.058Z" itemprop="datePublished"> 发表于 2016-11-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>the good parts </p>
+<p>第一章</p>
+<h3 id="1-分析javascript"><a href="#1-分析javascript" class="headerlink" title="1.分析javascript"></a>1.分析javascript</h3><p>函数/弱类型/动态对象/对象字面量<br>函数基于词法作用域（权威指南8.8.1）</p>
+<p>第二章</p>
+<h3 id="2-基本语法知识"><a href="#2-基本语法知识" class="headerlink" title="2.基本语法知识"></a>2.基本语法知识</h3><p>总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）<br>注意：</p>
+<blockquote>
+<ul>
+<li>语句：视为假的值有：false，null，undefined，空字符串，NaN，数值0；其他所有的值都被当作真；for in语句，try-catch语句，throw 语句</li>
+<li>typeof取值：number，string，boolean，object，function，undefined。</li>
+<li>运算符的结合性：一元/赋值/三元条件运算符结合性从右到左，（权威指南5.2.4运算符的结合性）；“%”求余和求模的区别</li>
+</ul>
+</blockquote>
+<p>第三章 对象</p>
+<h3 id="3-对象"><a href="#3-对象" class="headerlink" title="3.对象"></a>3.对象</h3><blockquote>
+<ul>
+<li>对象字面量：名/值对，检索（从undefined的成员属性中取值会导致TypeError错误，此时可以利用&amp;&amp; 来避免错误）；更新：扩充和替换；引用：对象通过引用来传递，它们永远不会被复制</li>
+<li>原型和委托（随着原型一层一层的寻找需要的属性）</li>
+<li>反射（访问对象属性的值）：hasOwnProperty()返回布尔值，不会检查原型链</li>
+<li>枚举：常用的过滤器有hasOwnProperty()，typeof用来排除函数。</li>
+<li>删除 delete</li>
+<li>减少全局变量污染：最小化使用全局变量（只创建一个唯一的全局变量）</li>
+</ul>
+</blockquote>
+<p>第四章 函数</p>
+<h3 id="4-函数"><a href="#4-函数" class="headerlink" title="4.函数"></a>4.函数</h3><blockquote>
+<ul>
+<li>所谓编程就是将一组需求分解成一组函数与数据结构的技能。</li>
+<li>函数对象：每个函数在创建时会附加两个隐藏的属性：函数的上下文和实现函数行为的代码</li>
+<li>通过函数字面量创建的函数对象包含一个连到外部上下文的链接，这被称为闭包。</li>
+<li>调用： 函数在调用时，会接收两个附加的参数：this和arguments，this 的值取决于调用模式(方法调用模式，函数调用模式，构造器调用模式，apply调用模式)<br><strong>四种调用方式：</strong></li>
+<li>方法调用模式：当一个函数被保存为对象的一个属性，称它为方法，当此方法被调用时，this被绑到该对象</li>
+<li>函数调用模式：不是对像的属性时，this被绑定到全局对象。解决方法：将this赋给that 变量</li>
+<li>构造器调用模式：如果一个函数前面带上new,背地里创建一个链接到该函数prototype成员的新对象，同时this会被绑定到该对象上。</li>
+<li><p>Apply 调用模式 ：apply()接受的两个参数：1.绑定到this上的值，2.参数数组；</p>
+</li>
+<li><p>其他：参数，返回，异常，扩充类型的功能（如给Number类型扩充integer方法等），递归（函数自身调用自身），作用域（作用：减少名称冲突，提供自动内存管理，因为没有块级作用域，最好在函数体的顶部声明函数中可能用到的所有变量），闭包（私有变量，包在一个函数体里）</p>
+</li>
+<li>闭包 注意点：避免在循环中创建函数。</li>
+<li>回调的概念：找相关例子。</li>
+<li>模块：使用函数和闭包来构造模块，是一个提供接口却隐藏状态与实现的函数或对像。模块模式的一般形式：一个定义了私有变量和函数的函数，利用闭包创建可以访问私有变量和函数的特权函数，最后返回这个特权函数，或将其保存到一个可以访问的地方。什么是单例模式（对象字面量创建的对象）？</li>
+<li>级联：一些方法没有返回值，如果让这些方法返回this而不是undefined，就可以启用级联。可产生出极富表现力的接口。</li>
+<li>柯里化</li>
+<li>记忆：将先前操作的结果记录在某个对象中，（数组或对象）</li>
+</ul>
+</blockquote>
+<p>第五章 继承</p>
+<h3 id="5-继承（继承模式：没法保护隐私）"><a href="#5-继承（继承模式：没法保护隐私）" class="headerlink" title="5.继承（继承模式：没法保护隐私）"></a>5.继承（继承模式：没法保护隐私）</h3><blockquote>
+<ul>
+<li>伪类 </li>
+<li>对象说明符：可以将json对象传递给一个构造器,将返回一个构造完全的对象。</li>
+<li>原型：差异化继承是什么。</li>
+<li>函数化：应用模块模式保护函数隐私。更好的封装和信息隐藏。</li>
+<li>部件：把对象组装起来。</li>
+</ul>
+</blockquote>
+<p>第六章 数组</p>
+<h3 id="6-数组"><a href="#6-数组" class="headerlink" title="6.数组"></a>6.数组</h3><blockquote>
+<ul>
+<li>length:(参考权威指南7.2 数组元素的读和写)，【】将其中的表达式转换成一个字符串；设置更大的length值不会给数组分配更多的空间，设小则会删除一些元素。</li>
+<li>删除数组中的一个元素 ：delete与splice的区别。</li>
+<li>数组的一些方法</li>
+</ul>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/11/02/闭包详解/" title="闭包详解" itemprop="url">闭包详解</a>
   </h1>
   <p class="article-author">By

@@ -1,0 +1,517 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>javascript语言精粹 | Practise more,Learn more.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Lili">
+    
+
+    
+    <meta name="description" content="the good parts 
+第一章
+1.分析javascript函数/弱类型/动态对象/对象字面量函数基于词法作用域（权威指南8.8.1）
+第二章
+2.基本语法知识总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）注意：
+
+
+语句：视为假的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript语言精粹">
+<meta property="og:url" content="http://Hellllll.github.io/2016/11/02/title- javascript语言精粹/index.html">
+<meta property="og:site_name" content="Practise more,Learn more.">
+<meta property="og:description" content="the good parts 
+第一章
+1.分析javascript函数/弱类型/动态对象/对象字面量函数基于词法作用域（权威指南8.8.1）
+第二章
+2.基本语法知识总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）注意：
+
+
+语句：视为假的">
+<meta property="og:updated_time" content="2016-11-02T07:05:34.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript语言精粹">
+<meta name="twitter:description" content="the good parts 
+第一章
+1.分析javascript函数/弱类型/动态对象/对象字面量函数基于词法作用域（权威指南8.8.1）
+第二章
+2.基本语法知识总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）注意：
+
+
+语句：视为假的">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Practise more,Learn more." type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Practise more,Learn more." title="Practise more,Learn more."/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Practise more,Learn more.">Practise more,Learn more.</a></h1>
+				<h2 class="blog-motto">Practice makes perfect.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Hellllll.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/11/02/title- javascript语言精粹/" title="javascript语言精粹" itemprop="url">javascript语言精粹</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Lili" target="_blank" itemprop="author">Lili</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-02T07:05:30.058Z" itemprop="datePublished"> 发表于 2016-11-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-分析javascript"><span class="toc-number">1.</span> <span class="toc-text">1.分析javascript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本语法知识"><span class="toc-number">2.</span> <span class="toc-text">2.基本语法知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-number">3.</span> <span class="toc-text">3.对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-函数"><span class="toc-number">4.</span> <span class="toc-text">4.函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-继承（继承模式：没法保护隐私）"><span class="toc-number">5.</span> <span class="toc-text">5.继承（继承模式：没法保护隐私）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数组"><span class="toc-number">6.</span> <span class="toc-text">6.数组</span></a></li></ol>
+		
+		</div>
+		
+		<p>the good parts </p>
+<p>第一章</p>
+<h3 id="1-分析javascript"><a href="#1-分析javascript" class="headerlink" title="1.分析javascript"></a>1.分析javascript</h3><p>函数/弱类型/动态对象/对象字面量<br>函数基于词法作用域（权威指南8.8.1）</p>
+<p>第二章</p>
+<h3 id="2-基本语法知识"><a href="#2-基本语法知识" class="headerlink" title="2.基本语法知识"></a>2.基本语法知识</h3><p>总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）<br>注意：</p>
+<blockquote>
+<ul>
+<li>语句：视为假的值有：false，null，undefined，空字符串，NaN，数值0；其他所有的值都被当作真；for in语句，try-catch语句，throw 语句</li>
+<li>typeof取值：number，string，boolean，object，function，undefined。</li>
+<li>运算符的结合性：一元/赋值/三元条件运算符结合性从右到左，（权威指南5.2.4运算符的结合性）；“%”求余和求模的区别</li>
+</ul>
+</blockquote>
+<p>第三章 对象</p>
+<h3 id="3-对象"><a href="#3-对象" class="headerlink" title="3.对象"></a>3.对象</h3><blockquote>
+<ul>
+<li>对象字面量：名/值对，检索（从undefined的成员属性中取值会导致TypeError错误，此时可以利用&amp;&amp; 来避免错误）；更新：扩充和替换；引用：对象通过引用来传递，它们永远不会被复制</li>
+<li>原型和委托（随着原型一层一层的寻找需要的属性）</li>
+<li>反射（访问对象属性的值）：hasOwnProperty()返回布尔值，不会检查原型链</li>
+<li>枚举：常用的过滤器有hasOwnProperty()，typeof用来排除函数。</li>
+<li>删除 delete</li>
+<li>减少全局变量污染：最小化使用全局变量（只创建一个唯一的全局变量）</li>
+</ul>
+</blockquote>
+<p>第四章 函数</p>
+<h3 id="4-函数"><a href="#4-函数" class="headerlink" title="4.函数"></a>4.函数</h3><blockquote>
+<ul>
+<li>所谓编程就是将一组需求分解成一组函数与数据结构的技能。</li>
+<li>函数对象：每个函数在创建时会附加两个隐藏的属性：函数的上下文和实现函数行为的代码</li>
+<li>通过函数字面量创建的函数对象包含一个连到外部上下文的链接，这被称为闭包。</li>
+<li>调用： 函数在调用时，会接收两个附加的参数：this和arguments，this 的值取决于调用模式(方法调用模式，函数调用模式，构造器调用模式，apply调用模式)<br><strong>四种调用方式：</strong></li>
+<li>方法调用模式：当一个函数被保存为对象的一个属性，称它为方法，当此方法被调用时，this被绑到该对象</li>
+<li>函数调用模式：不是对像的属性时，this被绑定到全局对象。解决方法：将this赋给that 变量</li>
+<li>构造器调用模式：如果一个函数前面带上new,背地里创建一个链接到该函数prototype成员的新对象，同时this会被绑定到该对象上。</li>
+<li><p>Apply 调用模式 ：apply()接受的两个参数：1.绑定到this上的值，2.参数数组；</p>
+</li>
+<li><p>其他：参数，返回，异常，扩充类型的功能（如给Number类型扩充integer方法等），递归（函数自身调用自身），作用域（作用：减少名称冲突，提供自动内存管理，因为没有块级作用域，最好在函数体的顶部声明函数中可能用到的所有变量），闭包（私有变量，包在一个函数体里）</p>
+</li>
+<li>闭包 注意点：避免在循环中创建函数。</li>
+<li>回调的概念：找相关例子。</li>
+<li>模块：使用函数和闭包来构造模块，是一个提供接口却隐藏状态与实现的函数或对像。模块模式的一般形式：一个定义了私有变量和函数的函数，利用闭包创建可以访问私有变量和函数的特权函数，最后返回这个特权函数，或将其保存到一个可以访问的地方。什么是单例模式（对象字面量创建的对象）？</li>
+<li>级联：一些方法没有返回值，如果让这些方法返回this而不是undefined，就可以启用级联。可产生出极富表现力的接口。</li>
+<li>柯里化</li>
+<li>记忆：将先前操作的结果记录在某个对象中，（数组或对象）</li>
+</ul>
+</blockquote>
+<p>第五章 继承</p>
+<h3 id="5-继承（继承模式：没法保护隐私）"><a href="#5-继承（继承模式：没法保护隐私）" class="headerlink" title="5.继承（继承模式：没法保护隐私）"></a>5.继承（继承模式：没法保护隐私）</h3><blockquote>
+<ul>
+<li>伪类 </li>
+<li>对象说明符：可以将json对象传递给一个构造器,将返回一个构造完全的对象。</li>
+<li>原型：差异化继承是什么。</li>
+<li>函数化：应用模块模式保护函数隐私。更好的封装和信息隐藏。</li>
+<li>部件：把对象组装起来。</li>
+</ul>
+</blockquote>
+<p>第六章 数组</p>
+<h3 id="6-数组"><a href="#6-数组" class="headerlink" title="6.数组"></a>6.数组</h3><blockquote>
+<ul>
+<li>length:(参考权威指南7.2 数组元素的读和写)，【】将其中的表达式转换成一个字符串；设置更大的length值不会给数组分配更多的空间，设小则会删除一些元素。</li>
+<li>删除数组中的一个元素 ：delete与splice的区别。</li>
+<li>数组的一些方法</li>
+</ul>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://Hellllll.github.io/2016/11/02/title- javascript语言精粹/" data-title="javascript语言精粹 | Practise more,Learn more." data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/11/02/闭包详解/"  title="闭包详解">
+ <strong>下一篇：</strong><br/> 
+ <span>闭包详解
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-分析javascript"><span class="toc-number">1.</span> <span class="toc-text">1.分析javascript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本语法知识"><span class="toc-number">2.</span> <span class="toc-text">2.基本语法知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-number">3.</span> <span class="toc-text">3.对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-函数"><span class="toc-number">4.</span> <span class="toc-text">4.函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-继承（继承模式：没法保护隐私）"><span class="toc-number">5.</span> <span class="toc-text">5.继承（继承模式：没法保护隐私）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数组"><span class="toc-number">6.</span> <span class="toc-text">6.数组</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://Hellllll.github.io" target="_blank" title="Lili&#39;s Blog">Lili&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Lili Page in Google. <br/>
+			This is my blog,Welcome to see me.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Lili">Lili</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
