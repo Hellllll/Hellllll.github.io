@@ -4,44 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>javascript语言精粹 | Practise more,Learn more.</title>
+    <title>TCP的三次握手和四次挥手 | Practise more,Learn more.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Lili">
     
 
     
-    <meta name="description" content="the good parts 
-第一章
-1.分析javascript函数/弱类型/动态对象/对象字面量函数基于词法作用域（权威指南8.8.1）
-第二章
-2.基本语法知识总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）注意：
-
-
-语句：视为假的">
+    <meta name="description" content="标签：计算机网络 TCP协议 读书笔记
+###运输层连接的管理TCP是面向连接的协议。此连接是一种逻辑连接，连接的端点称为套接字（IP地址：端口号）。运输连接是用来传送TCP报文的。它包括三个阶段：连接建立、数据传送、连接释放。
+TCP连接建立过程中需要解决的三个问题：
+1. 要使每一方都确知对方的存在；
+2. 要允许双方协商一些参数（如最大窗口值、是否使用窗口扩大选项和时间戳选项以及服务质量等）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript语言精粹">
-<meta property="og:url" content="http://Hellllll.github.io/2016/11/02/title- javascript语言精粹/index.html">
+<meta property="og:title" content="TCP的三次握手和四次挥手">
+<meta property="og:url" content="http://Hellllll.github.io/2018/02/07/title- TCP的三次握手和四次挥手/index.html">
 <meta property="og:site_name" content="Practise more,Learn more.">
-<meta property="og:description" content="the good parts 
-第一章
-1.分析javascript函数/弱类型/动态对象/对象字面量函数基于词法作用域（权威指南8.8.1）
-第二章
-2.基本语法知识总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）注意：
-
-
-语句：视为假的">
-<meta property="og:updated_time" content="2016-11-02T07:05:34.688Z">
+<meta property="og:description" content="标签：计算机网络 TCP协议 读书笔记
+###运输层连接的管理TCP是面向连接的协议。此连接是一种逻辑连接，连接的端点称为套接字（IP地址：端口号）。运输连接是用来传送TCP报文的。它包括三个阶段：连接建立、数据传送、连接释放。
+TCP连接建立过程中需要解决的三个问题：
+1. 要使每一方都确知对方的存在；
+2. 要允许双方协商一些参数（如最大窗口值、是否使用窗口扩大选项和时间戳选项以及服务质量等）">
+<meta property="og:image" content="http://ogzj4ffyq.bkt.clouddn.com/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B.jpg">
+<meta property="og:image" content="http://ogzj4ffyq.bkt.clouddn.com/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg">
+<meta property="og:updated_time" content="2018-02-07T15:24:38.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript语言精粹">
-<meta name="twitter:description" content="the good parts 
-第一章
-1.分析javascript函数/弱类型/动态对象/对象字面量函数基于词法作用域（权威指南8.8.1）
-第二章
-2.基本语法知识总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）注意：
-
-
-语句：视为假的">
+<meta name="twitter:title" content="TCP的三次握手和四次挥手">
+<meta name="twitter:description" content="标签：计算机网络 TCP协议 读书笔记
+###运输层连接的管理TCP是面向连接的协议。此连接是一种逻辑连接，连接的端点称为套接字（IP地址：端口号）。运输连接是用来传送TCP报文的。它包括三个阶段：连接建立、数据传送、连接释放。
+TCP连接建立过程中需要解决的三个问题：
+1. 要使每一方都确知对方的存在；
+2. 要允许双方协商一些参数（如最大窗口值、是否使用窗口扩大选项和时间戳选项以及服务质量等）">
+<meta name="twitter:image" content="http://ogzj4ffyq.bkt.clouddn.com/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="Practise more,Learn more." type="application/atom+xml">
@@ -101,14 +95,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/11/02/title- javascript语言精粹/" title="javascript语言精粹" itemprop="url">javascript语言精粹</a>
+      <a href="/2018/02/07/title- TCP的三次握手和四次挥手/" title="TCP的三次握手和四次挥手" itemprop="url">TCP的三次握手和四次挥手</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Lili" target="_blank" itemprop="author">Lili</a>
 		
   <p class="article-time">
-    <time datetime="2016-11-02T07:05:30.058Z" itemprop="datePublished"> 发表于 2016-11-02</time>
+    <time datetime="2018-02-07T15:24:34.534Z" itemprop="datePublished"> 发表于 2018-02-07</time>
     
   </p>
 </header>
@@ -117,73 +111,36 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-分析javascript"><span class="toc-number">1.</span> <span class="toc-text">1.分析javascript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本语法知识"><span class="toc-number">2.</span> <span class="toc-text">2.基本语法知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-number">3.</span> <span class="toc-text">3.对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-函数"><span class="toc-number">4.</span> <span class="toc-text">4.函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-继承（继承模式：没法保护隐私）"><span class="toc-number">5.</span> <span class="toc-text">5.继承（继承模式：没法保护隐私）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数组"><span class="toc-number">6.</span> <span class="toc-text">6.数组</span></a></li></ol>
+			
 		
 		</div>
 		
-		<p>the good parts </p>
-<p>第一章</p>
-<h3 id="1-分析javascript"><a href="#1-分析javascript" class="headerlink" title="1.分析javascript"></a>1.分析javascript</h3><p>函数/弱类型/动态对象/对象字面量<br>函数基于词法作用域（权威指南8.8.1）</p>
-<p>第二章</p>
-<h3 id="2-基本语法知识"><a href="#2-基本语法知识" class="headerlink" title="2.基本语法知识"></a>2.基本语法知识</h3><p>总：空白，标识符，数字，字符串（16位），语句（每个script标签提供一个编译且立即执行的编译单元）变量应该被定义在函数的头部。表达式，字面量（属性名可以是字符串和标识符，对象，数组，函数，正则表达式 ）<br>注意：</p>
-<blockquote>
+		<p>标签：计算机网络 TCP协议 读书笔记</p>
+<p>###运输层连接的管理<br>TCP是面向连接的协议。此连接是一种逻辑连接，连接的端点称为套接字<code>（IP地址：端口号）</code>。运输连接是用来传送TCP报文的。它包括三个阶段：连接建立、数据传送、连接释放。</p>
+<p>TCP连接建立过程中需要解决的三个问题：</p>
+<pre><code>1. 要使每一方都确知对方的存在；
+2. 要允许双方协商一些参数（如最大窗口值、是否使用窗口扩大选项和时间戳选项以及服务质量等）；
+3. 能够对运输实体资源（如缓存大小、连接表中的项目等）进行分配。
+</code></pre><p>TCP 连接的建立采用<code>客户服务端</code>的方式。</p>
 <ul>
-<li>语句：视为假的值有：false，null，undefined，空字符串，NaN，数值0；其他所有的值都被当作真；for in语句，try-catch语句，throw 语句</li>
-<li>typeof取值：number，string，boolean，object，function，undefined。</li>
-<li>运算符的结合性：一元/赋值/三元条件运算符结合性从右到左，（权威指南5.2.4运算符的结合性）；“%”求余和求模的区别</li>
+<li>先弄清一些TCP首部报文段格式的概念<br><strong>标志位</strong>：<br>1）确认<code>ACK</code> （ACKnowledgement） 仅当 <code>ACK = 1</code> 时确认号字段才有效。当 <code>ACK = 0</code> 时，确认号无效。TCP规定，在连接建立后所有传送的报文段都必须把ACK置为1。<br>2）同步<code>SYN</code>（SYNchronization）在连接建立时用来同步序号。当 <code>SYN = 1，ACK = 0</code> 时，表明这是一个连接请求报文。对方若同意建立连接，则应在响应报文中使<code>SYN = 1， ACK = 1</code>。因此，<code>SYN</code>置为1就表示这是一个连接请求或接受请求报文。<br>3）终止<code>FIN</code>（FINish）用来释放一个连接。当<code>FIN=1</code>时，表明此报文段的发送方的数据已发送完毕，并要求释放连接。<br><strong>序号</strong>：<br>1）<code>Seq</code>序号 占32位，用来标识发送方向接收方发送的报文段中第一个字节的序号，发起方发送数据时对此进行标记。<br><strong>确认号</strong>：<br>1）<code>Ack</code>确认号 占32位，是期望收到对方下一个报文段的第一个数据字节的序号。只有当<code>ACK=1</code>时，确认号字段才有效，<code>Ack=Seq+1</code>。<br>###TCP的连接建立（三次握手）<br>在连接之初，客户端和服务端都处于<code>CLOSED</code>状态，客户端主动发送连接建立请求，服务端通过监听请求，连接被动打开。如下图，展示了连接建立的详细过程：</li>
 </ul>
-</blockquote>
-<p>第三章 对象</p>
-<h3 id="3-对象"><a href="#3-对象" class="headerlink" title="3.对象"></a>3.对象</h3><blockquote>
-<ul>
-<li>对象字面量：名/值对，检索（从undefined的成员属性中取值会导致TypeError错误，此时可以利用&amp;&amp; 来避免错误）；更新：扩充和替换；引用：对象通过引用来传递，它们永远不会被复制</li>
-<li>原型和委托（随着原型一层一层的寻找需要的属性）</li>
-<li>反射（访问对象属性的值）：hasOwnProperty()返回布尔值，不会检查原型链</li>
-<li>枚举：常用的过滤器有hasOwnProperty()，typeof用来排除函数。</li>
-<li>删除 delete</li>
-<li>减少全局变量污染：最小化使用全局变量（只创建一个唯一的全局变量）</li>
-</ul>
-</blockquote>
-<p>第四章 函数</p>
-<h3 id="4-函数"><a href="#4-函数" class="headerlink" title="4.函数"></a>4.函数</h3><blockquote>
-<ul>
-<li>所谓编程就是将一组需求分解成一组函数与数据结构的技能。</li>
-<li>函数对象：每个函数在创建时会附加两个隐藏的属性：函数的上下文和实现函数行为的代码</li>
-<li>通过函数字面量创建的函数对象包含一个连到外部上下文的链接，这被称为闭包。</li>
-<li>调用： 函数在调用时，会接收两个附加的参数：this和arguments，this 的值取决于调用模式(方法调用模式，函数调用模式，构造器调用模式，apply调用模式)<br><strong>四种调用方式：</strong></li>
-<li>方法调用模式：当一个函数被保存为对象的一个属性，称它为方法，当此方法被调用时，this被绑到该对象</li>
-<li>函数调用模式：不是对像的属性时，this被绑定到全局对象。解决方法：将this赋给that 变量</li>
-<li>构造器调用模式：如果一个函数前面带上new,背地里创建一个链接到该函数prototype成员的新对象，同时this会被绑定到该对象上。</li>
-<li><p>Apply 调用模式 ：apply()接受的两个参数：1.绑定到this上的值，2.参数数组；</p>
-</li>
-<li><p>其他：参数，返回，异常，扩充类型的功能（如给Number类型扩充integer方法等），递归（函数自身调用自身），作用域（作用：减少名称冲突，提供自动内存管理，因为没有块级作用域，最好在函数体的顶部声明函数中可能用到的所有变量），闭包（私有变量，包在一个函数体里）</p>
-</li>
-<li>闭包 注意点：避免在循环中创建函数。</li>
-<li>回调的概念：找相关例子。</li>
-<li>模块：使用函数和闭包来构造模块，是一个提供接口却隐藏状态与实现的函数或对像。模块模式的一般形式：一个定义了私有变量和函数的函数，利用闭包创建可以访问私有变量和函数的特权函数，最后返回这个特权函数，或将其保存到一个可以访问的地方。什么是单例模式（对象字面量创建的对象）？</li>
-<li>级联：一些方法没有返回值，如果让这些方法返回this而不是undefined，就可以启用级联。可产生出极富表现力的接口。</li>
-<li>柯里化</li>
-<li>记忆：将先前操作的结果记录在某个对象中，（数组或对象）</li>
-</ul>
-</blockquote>
-<p>第五章 继承</p>
-<h3 id="5-继承（继承模式：没法保护隐私）"><a href="#5-继承（继承模式：没法保护隐私）" class="headerlink" title="5.继承（继承模式：没法保护隐私）"></a>5.继承（继承模式：没法保护隐私）</h3><blockquote>
-<ul>
-<li>伪类 </li>
-<li>对象说明符：可以将json对象传递给一个构造器,将返回一个构造完全的对象。</li>
-<li>原型：差异化继承是什么。</li>
-<li>函数化：应用模块模式保护函数隐私。更好的封装和信息隐藏。</li>
-<li>部件：把对象组装起来。</li>
-</ul>
-</blockquote>
-<p>第六章 数组</p>
-<h3 id="6-数组"><a href="#6-数组" class="headerlink" title="6.数组"></a>6.数组</h3><blockquote>
-<ul>
-<li>length:(参考权威指南7.2 数组元素的读和写)，【】将其中的表达式转换成一个字符串；设置更大的length值不会给数组分配更多的空间，设小则会删除一些元素。</li>
-<li>删除数组中的一个元素 ：delete与splice的区别。</li>
-<li>数组的一些方法</li>
-</ul>
-</blockquote>
+<p><img src="http://ogzj4ffyq.bkt.clouddn.com/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B.jpg" alt=""></p>
+<p>说明：<br>将客户端设为A方，服务器端设为B方。A主动打开连接，B被动打开连接。<br>一开始，B的TCP服务器进程先创建传输控制块<code>TCB</code>，准备接受客户进程的连接请求。此时服务器进程处于LISTEN状态，等待客户的连接请求，如有，即作出响应。接下里就开始开始握手了</p>
+<p>第一次握手：A的TCP客户进程也先创建传输控制块<code>TCB</code>，然后像B发出连接请求报文段，此时首部中的同步位<code>SYN=1</code>，并选择一个初始序号<code>Seq=X</code>。这时，TCP客户进程进入<code>SYN-SENT</code>（同步已发送）状态。</p>
+<p>第二次握手：B收到连接请求报文后，若同意建立连接，则向A发送确认。在确认报文段中，应该设置<code>SYN=1 ACK=1</code>，确认号<code>Ack=X+1</code>，同时也为自己选择一个初始序号为<code>Seq=Y</code>。这时TCP服务器进程进入<code>SYN-RCVD</code>（同步状态）。</p>
+<p>第三次握手：TCP客户进程收到B的确认后，还要向B给出确认。确认报文段的ACK置1，确认号<code>Ack=Y+1</code>，而自己的序号<code>Seq=X+1</code>。这时，连接已经建立，A进入<code>ESTABLISHED</code>（已建立连接）状态。B收到A的确认后，也进入<code>ESTABLISHED</code>状态。</p>
+<p><strong>思考</strong>：为什么A还要发送一次确认呢？<br>这主要是为了防止已失效的连接请求报文段突然又传到了B，因而产生错误。</p>
+<p>###TCP的连接释放（四次挥手）<br>数据传输结束后，通信的双方均可释放连接。大致过程如下图所示：</p>
+<p><img src="http://ogzj4ffyq.bkt.clouddn.com/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg" alt=""></p>
+<p>说明：<br>现在A和B都处于<code>ESTABLISED</code>状态。A的应用进程先向其TCP发出连接释放报文段，并停止再发送数据，主动关闭TCP连接。</p>
+<p>第一次挥手：A把连接释放报文段首部的终止控制位FIN置1，其序号为<code>Seq=u</code>，它等于前面已传送过的数据的最后一个字节的序号加1。这时A进入<code>FIN-WAIT-1</code>（终止等待1）状态，等待B的确认。</p>
+<p>第二次挥手：B收到连接释放报文段后即发出确认，确认号<code>Ack=u+1</code>，而这个报文段自己的序号为<code>v</code>，它等于已传送过的数据的最后一个字节的序号加1。然后B就进入<code>CLOSED-WAIT</code>（关闭等待）状态。A收到来自B的确认后，就进入<code>FIN-WAIT-2</code>（终止等待2）状态，等待B发出连接释放报文段。</p>
+<p>注意：TCP服务器进程这时应通知高层应用程序，因而从A到B这个方向的连接就释放了，这时的TCP连接处于半关闭状态，即A已经没有数据要发送了，但B若发送数据，A仍要接受。也就是说，从B到A这个方向的连接并没有关闭，这个状态可能会持续一些时间。</p>
+<p>第三次挥手：若B已经没有要向A发送数据，其应用进程就通知TCP释放连接。这时B发出的连接释放报文段必须使<code>FIN=1</code>.现假定B的序列号为<code>w</code>（在半关闭状态B可能又发送了一些数据）。B还必须重复上次已发送过的确认号<code>Ack=u+1</code>。这时B就进入<code>LAST-ACK</code>（最后确认）状态，等待A的确认。</p>
+<p>第四次挥手：A在收到B的连接释放报文段后，必须对此发出确认。在确认报文段中把ACK置为1，确认号<code>Ack=w+1</code>，而自己的序号为<code>Seq=u+1</code>，然后进入<code>TIME-WAIT</code>（时间等待）状态。现在TCP连接还没有释放掉，必须经过时间等待计时器设置的时间<code>2MSL</code>后，A才进入到<code>CLOSED</code>状态。B只要收到A发出的确认后，就进入<code>CLOSED</code>状态。A、B在撤销了相应的传输控制块TCB后，就释放了这次的TCP连接。</p>
+<p><strong>思考</strong>：为什么A在TIME-WAIT状态必须等待2MSL的时间呢？<br>1）为了保证A发送的最后一个ACK报文段能够到达B。<br>2）防止已失效的连接请求报文段又传到了B，因而产生错误。</p>
+<p>主要参考：<br><a href="http://blog.csdn.net/sssnmnmjmf/article/details/68486261" target="_blank" rel="external">http://blog.csdn.net/sssnmnmjmf/article/details/68486261</a><br>计算机网络（第6版）谢希仁 著</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -196,7 +153,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://Hellllll.github.io/2016/11/02/title- javascript语言精粹/" data-title="javascript语言精粹 | Practise more,Learn more." data-tsina="null" class="share clearfix">
+	  <div data-url="http://Hellllll.github.io/2018/02/07/title- TCP的三次握手和四次挥手/" data-title="TCP的三次握手和四次挥手 | Practise more,Learn more." data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -210,18 +167,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2018/02/07/title- TCP的三次握手和四次挥手/" title="TCP的三次握手和四次挥手">
+ <a href="/2018/02/11/title- 校招面试题整理/" title="校招面试题整理">
   <strong>上一篇：</strong><br/>
   <span>
-  TCP的三次握手和四次挥手</span>
+  校招面试题整理</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/11/02/title- 闭包详解/"  title="闭包详解">
+<a href="/2016/11/02/title- javascript语言精粹/"  title="javascript语言精粹">
  <strong>下一篇：</strong><br/> 
- <span>闭包详解
+ <span>javascript语言精粹
 </span>
 </a>
 </div>
@@ -236,7 +193,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-分析javascript"><span class="toc-number">1.</span> <span class="toc-text">1.分析javascript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本语法知识"><span class="toc-number">2.</span> <span class="toc-text">2.基本语法知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-number">3.</span> <span class="toc-text">3.对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-函数"><span class="toc-number">4.</span> <span class="toc-text">4.函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-继承（继承模式：没法保护隐私）"><span class="toc-number">5.</span> <span class="toc-text">5.继承（继承模式：没法保护隐私）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数组"><span class="toc-number">6.</span> <span class="toc-text">6.数组</span></a></li></ol>
+ 
  
   </div>
 
