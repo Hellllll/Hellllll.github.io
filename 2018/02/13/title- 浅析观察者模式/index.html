@@ -1,0 +1,488 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>浅析观察者模式 | Practise more,Learn more.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Lili">
+    
+
+    
+    <meta name="description" content="标签：JavaScript 设计模式
+
+前言：最近在学习Node.js，了解了node中的事件驱动机制，而相应的事件循环实现和设计模式中观察者相似，于是打算将观察者模式顺带学习一番。
+定义通过查阅书籍，以及一些其他文档，观察者模式的定义可以简述为以下几个步骤：
+
+目标状态发生观察者感兴趣的改变
+目标对象发送一个通知消息（怎样发送，或是通过什么发送呢）
+目标对象调用每个观察者的更新方法
+最后，当观察">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析观察者模式">
+<meta property="og:url" content="http://Hellllll.github.io/2018/02/13/title- 浅析观察者模式/index.html">
+<meta property="og:site_name" content="Practise more,Learn more.">
+<meta property="og:description" content="标签：JavaScript 设计模式
+
+前言：最近在学习Node.js，了解了node中的事件驱动机制，而相应的事件循环实现和设计模式中观察者相似，于是打算将观察者模式顺带学习一番。
+定义通过查阅书籍，以及一些其他文档，观察者模式的定义可以简述为以下几个步骤：
+
+目标状态发生观察者感兴趣的改变
+目标对象发送一个通知消息（怎样发送，或是通过什么发送呢）
+目标对象调用每个观察者的更新方法
+最后，当观察">
+<meta property="og:updated_time" content="2018-02-12T17:16:09.577Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅析观察者模式">
+<meta name="twitter:description" content="标签：JavaScript 设计模式
+
+前言：最近在学习Node.js，了解了node中的事件驱动机制，而相应的事件循环实现和设计模式中观察者相似，于是打算将观察者模式顺带学习一番。
+定义通过查阅书籍，以及一些其他文档，观察者模式的定义可以简述为以下几个步骤：
+
+目标状态发生观察者感兴趣的改变
+目标对象发送一个通知消息（怎样发送，或是通过什么发送呢）
+目标对象调用每个观察者的更新方法
+最后，当观察">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Practise more,Learn more." type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Practise more,Learn more." title="Practise more,Learn more."/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Practise more,Learn more.">Practise more,Learn more.</a></h1>
+				<h2 class="blog-motto">Practice makes perfect.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Hellllll.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/02/13/title- 浅析观察者模式/" title="浅析观察者模式" itemprop="url">浅析观察者模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Lili" target="_blank" itemprop="author">Lili</a>
+		
+  <p class="article-time">
+    <time datetime="2018-02-12T17:15:56.525Z" itemprop="datePublished"> 发表于 2018-02-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>标签：JavaScript 设计模式</p>
+<hr>
+<p>前言：最近在学习Node.js，了解了node中的事件驱动机制，而相应的事件循环实现和设计模式中观察者相似，于是打算将观察者模式顺带学习一番。</p>
+<p><strong>定义</strong><br>通过查阅书籍，以及一些其他文档，观察者模式的定义可以简述为以下几个步骤：</p>
+<ol>
+<li>目标状态发生观察者感兴趣的改变</li>
+<li>目标对象发送一个通知消息（怎样发送，或是通过什么发送呢）</li>
+<li>目标对象调用每个观察者的更新方法</li>
+<li>最后，当观察者不再对目标状态的更新感兴趣，则观察者将自动分离</li>
+</ol>
+<p><strong>角色及作用</strong></p>
+<ul>
+<li>Subject （目标） 维护一系列观察者，方便添加或者删除观察者；</li>
+<li>Observer（观察者）为那些目标状态发生改变时需获得通知的对象（具体观察者？）提供一个更新接口；</li>
+<li>ConcreteSubject（具体目标） 状态发生改变时，向Observer发出通知，存储ConcreteObserver的状态；</li>
+<li>ConcreteObserver（具体观察者）存储一个ConcreteObserver的引用，实现更新接口，以使自身状态和目标状态保持一致。</li>
+</ul>
+<p><strong>以下实现一个观察者模式的组件</strong></p>
+<p>首先，模拟一个目标可能拥有的一系列Observer<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ObserverList</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.observerlist = [];</div><div class="line">&#125;</div><div class="line"></div><div class="line">ObserverList.prototype.Add = <span class="function"><span class="params">obj</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.observerlist.push(obj);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">ObserverList.prototype.Empty = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.observerlist.length = <span class="number">0</span>;</div><div class="line">    <span class="comment">// this.observerlist = [];</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">ObserverList.prototype.Count = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.observerlist.length;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">ObserverList.prototype.Get = <span class="function"><span class="params">index</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> (index &gt; <span class="number">-1</span> &amp;&amp; index &lt; <span class="keyword">this</span>.observerlist.length) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.observerlist[index];</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 从观察者头尾添加其他观察者</span></div><div class="line">ObserverList.prototype.Insert = <span class="function">(<span class="params">obj, index</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> pointer = <span class="number">-1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (index === <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">this</span>.observerlist.unshift(obj);</div><div class="line">        pointer = index;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index === <span class="keyword">this</span>.observerlist.length) &#123;</div><div class="line">        <span class="keyword">this</span>.observerlist.push(obj);</div><div class="line">        pointer = index;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> pointer;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">ObserverList.prototype.IndexOf = <span class="function">(<span class="params">obj, startIndex</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> pointer = <span class="number">-1</span>, i = startIndex;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(i &lt; <span class="keyword">this</span>.observerlist.length) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.observerlist[i] === obj) &#123;</div><div class="line">            pointer = i;</div><div class="line">        &#125;</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> pointer;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 从列表首尾删除观察者</span></div><div class="line">ObserverList.prototype.RemoveIndexAt = <span class="function"><span class="params">index</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> (index === <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">this</span>.observerlist.shift();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index === <span class="keyword">this</span>.observerlist.length - <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">this</span>.observerlist.pop();</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">obj, extention</span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> extention) &#123;</div><div class="line">        extention[key] = obj[key] ;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>接下来，来模拟目标（Subject）和在观察者列表上添加。删除或通知观察者的能力<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Subject</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.observers = <span class="keyword">new</span> ObserverList();</div><div class="line">&#125;</div><div class="line"></div><div class="line">Subject.prototype.AddObserver = <span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.observers.Add(observer);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Subject.prototype.RemoveObserver = <span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.observers.RemoveIndexAt(<span class="keyword">this</span>.observers.IndexOf(observer, <span class="number">0</span>));</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Subject.prototype.Notify = <span class="function"><span class="params">context</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> observerCount = <span class="keyword">this</span>.observers.Count();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; observerCount; i++) &#123;</div><div class="line">        <span class="comment">// 这里的Update方法将在Observer实例中实现，一般会重写自定义更新行为;</span></div><div class="line">        <span class="keyword">this</span>.observers.Get(i).Update(context);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>然后定义一个框架来创建新的Observer<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>上面实现了一个观察者模式，接下来通过一个实例程序，学习怎样使用观察者模式：</p>
+<ol>
+<li>用于向页面添加新可见的CheckBox按钮；</li>
+<li>控制CheckBox，将充当一个目标，通知其他CheckBox需要进行检查；</li>
+<li>用于添加新CheckBox的容器</li>
+</ol>
+<p>实现代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"addNewObserver"</span>&gt;</span>Add New Observer checkbox<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"mainCheckbox"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"observerContainer"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>下面是样例代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 样例脚本</span></div><div class="line"><span class="keyword">var</span> controlCheckbox = <span class="built_in">document</span>.getElementById(<span class="string">'mainCheckbox'</span>),</div><div class="line">    addBtn = <span class="built_in">document</span>.getElementById(<span class="string">'addNewObserver'</span>),</div><div class="line">    container = <span class="built_in">document</span>.getElementById(<span class="string">'observerContainer'</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 目标对象，用于控制所有的观察者 具体目标ConcreteSubject</span></div><div class="line">    extend(<span class="keyword">new</span> Subject(), controlCheckbox);</div><div class="line">        </div><div class="line">    <span class="comment">// 点击CheckBox会触发通知到观察者上</span></div><div class="line">    controlCheckbox[<span class="string">"onclick"</span>] = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"controlCheckbox.Notify(controlCheckbox.checked)"</span>);</div><div class="line">    <span class="comment">// 添加新的观察者</span></div><div class="line">    addBtn[<span class="string">"onclick"</span>] = AddNewObserver;</div><div class="line"></div><div class="line">    <span class="comment">// 具体观察者ConcreteObserver</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">AddNewObserver</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> check = <span class="built_in">document</span>.createElement(<span class="string">"input"</span>);</div><div class="line">            check.type = <span class="string">"checkbox"</span>;</div><div class="line"></div><div class="line">        extend(<span class="keyword">new</span> Observer(), check);</div><div class="line"></div><div class="line">        check.Update = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.checked = value;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        controlCheckbox.AddObserver(check);</div><div class="line">        container.appendChild(check);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>以上就是观察者模式的简单实现和使用，主要弄清楚目标，观察者，具体目标，具体观察者这四者之间的关系，以及弄清它们之间的调用的关系。总体说来还是比较容易理解。</p>
+<p>主要参考：JavaScript设计模式 [美] Addy Osnabi 著</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://Hellllll.github.io/2018/02/13/title- 浅析观察者模式/" data-title="浅析观察者模式 | Practise more,Learn more." data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/02/11/title- 校招面试题整理/"  title="校招面试题整理">
+ <strong>下一篇：</strong><br/> 
+ <span>校招面试题整理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://Hellllll.github.io" target="_blank" title="Lili&#39;s Blog">Lili&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Lili Page in Google. <br/>
+			This is my blog,Welcome to see me.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Lili">Lili</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
